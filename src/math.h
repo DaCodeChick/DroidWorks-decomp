@@ -7,4 +7,5 @@ struct vector3
 	void PitchYaw(vector3 *angles) const;
 };
 
+float NormalizeAngle(float angle);
 float WeightedAverage(float a, float b, float c);

@@ -8,12 +8,44 @@ void vector3::PitchYaw(vector3 *angles) const
 {
 	float fVar1;
 
-	angles->z = 0.0;
+	angles->z = 0.0f;
 	fVar1 = std::asinf(z);
 	angles->x = fVar1;
 	fVar1 = std::atan2f(y, x);
 	angles->y = fVar1;
 	return;
+}
+
+// Win: 00500f40
+float NormalizeAngle(float angle)
+{
+	float fVar1;
+	float local_c;
+
+	if (0.0f <= angle)
+	{
+		if (angle < 360.0f)
+		{
+			return angle;
+		}
+		fVar1 = std::roundf(angle / 360.0f);
+		local_c = angle - fVar1 * 360.0f;
+	}
+	else
+	{
+		local_c = -angle;
+		if (360.0f <= local_c)
+		{
+			fVar1 = std::roundf(local_c / 360.0f);
+			local_c = local_c - fVar1 * 360.0f;
+		}
+		local_c = 360.0f - local_c;
+	}
+	if (local_c == 360.0f)
+	{
+		local_c = 0.0f;
+	}
+	return local_c;
 }
 
 // Win: 00501a80
@@ -26,7 +58,7 @@ float WeightedAverage(float a, float b, float c)
 	undefined4 local_c;
 	undefined4 local_8;
 
-	if (0.0 <= a)
+	if (0.0f <= a)
 	{
 		local_14 = a;
 	}
@@ -34,7 +66,7 @@ float WeightedAverage(float a, float b, float c)
 	{
 		local_14 = -a;
 	}
-	if (0.0 <= b)
+	if (0.0f <= b)
 	{
 		local_18 = b;
 	}
@@ -42,7 +74,7 @@ float WeightedAverage(float a, float b, float c)
 	{
 		local_18 = -b;
 	}
-	if (0.0 <= c)
+	if (0.0f <= c)
 	{
 		local_1c = c;
 	}
@@ -81,5 +113,5 @@ float WeightedAverage(float a, float b, float c)
 			local_10 = local_1c;
 		}
 	}
-	return local_10 / 2.0 + local_8 / 2.0 + local_c;
+	return local_10 / 2.0f + local_8 / 2.0f + local_c;
 }
