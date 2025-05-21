@@ -9,7 +9,7 @@ void Vector2::Normalize()
 	float fVar1;
 
 	fVar1 = std::sqrtf(x * x + y * y);
-	if (fVar1 != 0.0)
+	if (fVar1 != 0.0f)
 	{
 		x = x / fVar1;
 		y = y / fVar1;
@@ -72,7 +72,7 @@ void Vector3::NormalizeTo(const Vector3 *other, float magnitude)
 {
 	float fVar1;
 
-	fVar1 = 1.0 / magnitude;
+	fVar1 = 1.0f / magnitude;
 	x = other->x * fVar1;
 	y = other->y * fVar1;
 	z = other->z * fVar1;
@@ -90,6 +90,80 @@ void Vector3::PitchYaw(Vector3 *angles) const
 	fVar1 = std::atan2f(y, x);
 	angles->y = fVar1;
 	return;
+}
+
+// Win: 0047e7c0
+float Vector3::WeightedNormalize()
+{
+	float fVar1;
+	float local_28;
+	float local_24;
+	float local_20;
+	float local_1c;
+	float local_c;
+	float local_8;
+
+	if (0.0f <= x)
+	{
+		local_20 = x;
+	}
+	else
+	{
+		local_20 = -x;
+	}
+	local_c = local_20;
+	if (0.0f <= y)
+	{
+		local_24 = y;
+	}
+	else
+	{
+		local_24 = -y;
+	}
+	local_8 = local_24;
+	if (0.0f <= z)
+	{
+		local_28 = z;
+	}
+	else
+	{
+		local_28 = -z;
+	}
+	local_1c = local_28;
+	if (local_28 <= local_24)
+	{
+		if (local_20 < local_24)
+		{
+			local_8 = local_20;
+			local_c = local_24;
+			if (local_20 < local_28)
+			{
+				local_1c = local_20;
+				local_8 = local_28;
+			}
+		}
+	}
+	else if (local_28 <= local_20)
+	{
+		local_1c = local_24;
+		local_8 = local_28;
+	}
+	else
+	{
+		local_1c = local_20;
+		local_c = local_28;
+		if (local_24 < local_20)
+		{
+			local_1c = local_24;
+			local_8 = local_20;
+		}
+	}
+	local_c = local_1c * 0.25f + local_8 * 0.34375f + local_c;
+	fVar1 = 1.0f / local_c;
+	x = x * fVar1;
+	y = y * fVar1;
+	z = z * fVar1;
+	return local_c;
 }
 
 // Win: 00501040

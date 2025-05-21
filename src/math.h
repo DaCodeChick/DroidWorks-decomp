@@ -17,6 +17,7 @@ struct Vector3
 	void NormalizeTo(const Vector3 *rhs);
 	void NormalizeTo(const Vector3 *other, float magnitude);
 	void PitchYaw(Vector3 *angles) const;
+	float WeightedNormalize();
 };
 
 float GetAngleDelta(float base, float target);
