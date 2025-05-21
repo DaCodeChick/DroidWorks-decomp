@@ -16,6 +16,29 @@ void vector3::PitchYaw(vector3 *angles) const
 	return;
 }
 
+// Win: 00501040
+float GetAngleDelta(float base, float target)
+{
+	float fVar1;
+	float fVar2;
+
+	fVar1 = NormalizeAngle360(target);
+	fVar2 = NormalizeAngle360(base);
+	fVar1 = fVar1 - fVar2;
+	if (0.0 <= fVar1)
+	{
+		if (180.0 < fVar1)
+		{
+			fVar1 = -(360.0 - fVar1);
+		}
+	}
+	else if (fVar1 < -180.0)
+	{
+		fVar1 = fVar1 + 360.0;
+	}
+	return fVar1;
+}
+
 // Win: 00501000
 float NormalizeAngle180(float angle)
 {
