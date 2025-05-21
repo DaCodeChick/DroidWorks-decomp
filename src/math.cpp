@@ -4,7 +4,7 @@
 #include <cmath>
 
 // Win: 0047e710
-void __cdecl Vector2::Normalize()
+void Vector2::Normalize()
 {
 	float fVar1;
 
