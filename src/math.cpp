@@ -26,25 +26,6 @@ void Vector3::Add(const Vector3 *rhs)
 	return;
 }
 
-// Win: 0047e690
-void Vector3::GetNormalized(const Vector3 *rhs)
-{
-	float fVar1;
-
-	fVar1 = std::sqrtf(rhs->x * rhs->x + rhs->z * rhs->z + rhs->y * rhs->y);
-	if (fVar1 != 0.0f)
-	{
-		x = rhs->x / fVar1;
-		y = rhs->y / fVar1;
-		z = rhs->z / fVar1;
-		return;
-	}
-	x = rhs->x;
-	y = rhs->y;
-	z = rhs->z;
-	return;
-}
-
 // Win: 0047e650
 float Vector3::Magnitude() const
 {
@@ -64,6 +45,37 @@ void Vector3::Normalize()
 		y = y * fVar1;
 		z = z * fVar1;
 	}
+	return;
+}
+
+// Win: 0047e690
+void Vector3::NormalizeTo(const Vector3 *rhs)
+{
+	float fVar1;
+
+	fVar1 = std::sqrtf(rhs->x * rhs->x + rhs->z * rhs->z + rhs->y * rhs->y);
+	if (fVar1 != 0.0f)
+	{
+		x = rhs->x / fVar1;
+		y = rhs->y / fVar1;
+		z = rhs->z / fVar1;
+		return;
+	}
+	x = rhs->x;
+	y = rhs->y;
+	z = rhs->z;
+	return;
+}
+
+// Win: 0047e950
+void Vector3::NormalizeTo(const Vector3 *other, float magnitude)
+{
+	float fVar1;
+
+	fVar1 = 1.0 / magnitude;
+	x = other->x * fVar1;
+	y = other->y * fVar1;
+	z = other->z * fVar1;
 	return;
 }
 
