@@ -3,7 +3,7 @@
 // Win: 00501ba0
 uint StringHash(const char *str, int divisor)
 {
-	char *pcVar1;
+	const char *pcVar1;
 	char cVar2;
 	int iVar3;
 	uint uVar4;
