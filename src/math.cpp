@@ -16,8 +16,21 @@ void vector3::PitchYaw(vector3 *angles) const
 	return;
 }
 
+// Win: 00501000
+float NormalizeAngle180(float angle)
+{
+	undefined4 local_8;
+
+	local_8 = NormalizeAngle360(angle);
+	if (180.0f < local_8)
+	{
+		local_8 = -(360.0f - local_8);
+	}
+	return local_8;
+}
+
 // Win: 00500f40
-float NormalizeAngle(float angle)
+float NormalizeAngle360(float angle)
 {
 	float fVar1;
 	float local_c;
