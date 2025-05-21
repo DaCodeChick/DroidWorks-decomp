@@ -1,20 +1,22 @@
 #include "math.h"
-
 #include "typedefs.h"
 
-float powi(float base, int exponent)
-{
-	undefined4 local_c;
-	undefined4 local_8;
+#include <cmath>
 
-	local_8 = base;
-	for (local_c = 0; local_c < exponent + -1; local_c = local_c + 1)
-	{
-		local_8 = local_8 * base;
-	}
-	return local_8;
+// Win: 0047e9e0
+void vector3::PitchYaw(vector3 *angles) const
+{
+	float fVar1;
+
+	angles->z = 0.0;
+	fVar1 = std::asinf(z);
+	angles->x = fVar1;
+	fVar1 = std::atan2f(y, x);
+	angles->y = fVar1;
+	return;
 }
 
+// Win: 00501a80
 float WeightedAverage(float a, float b, float c)
 {
 	undefined4 local_1c;
