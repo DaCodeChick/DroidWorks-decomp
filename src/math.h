@@ -1,10 +1,11 @@
 #pragma once
 
-struct vector3
+struct Vector3
 {
 	float x, y, z;
 
-	void PitchYaw(vector3 *angles) const;
+	void Normalize();
+	void PitchYaw(Vector3 *angles) const;
 };
 
 float GetAngleDelta(float base, float target);

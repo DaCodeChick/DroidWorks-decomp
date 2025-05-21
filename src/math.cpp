@@ -3,8 +3,24 @@
 
 #include <cmath>
 
+// Win: 0047e750
+void Vector3::Normalize()
+{
+	float fVar1;
+
+	fVar1 = std::sqrtf(x * x + z * z + y * y);
+	if (fVar1 != 0.0f)
+	{
+		fVar1 = 1.0f / fVar1;
+		x = x * fVar1;
+		y = y * fVar1;
+		z = z * fVar1;
+	}
+	return;
+}
+
 // Win: 0047e9e0
-void vector3::PitchYaw(vector3 *angles) const
+void Vector3::PitchYaw(Vector3 *angles) const
 {
 	float fVar1;
 
@@ -25,16 +41,16 @@ float GetAngleDelta(float base, float target)
 	fVar1 = NormalizeAngle360(target);
 	fVar2 = NormalizeAngle360(base);
 	fVar1 = fVar1 - fVar2;
-	if (0.0 <= fVar1)
+	if (0.0f <= fVar1)
 	{
-		if (180.0 < fVar1)
+		if (180.0f < fVar1)
 		{
-			fVar1 = -(360.0 - fVar1);
+			fVar1 = -(360.0f - fVar1);
 		}
 	}
-	else if (fVar1 < -180.0)
+	else if (fVar1 < -180.0f)
 	{
-		fVar1 = fVar1 + 360.0;
+		fVar1 = fVar1 + 360.0f;
 	}
 	return fVar1;
 }
