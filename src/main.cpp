@@ -1,9 +1,12 @@
-#include "ghidra.h"
+#include "typedefs.h"
 
+// Win: 0053e7b8
 static char gStringBuffer[64] = {0};
+
 static char gBasePath[] = "\\";
 static char gMoviePath[] = "Movie";
 
+// Win: 0041b280
 static bool CheckInstall(void)
 {
 	char cVar1;

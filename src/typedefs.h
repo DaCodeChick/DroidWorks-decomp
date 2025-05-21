@@ -20,3 +20,18 @@ typedef unsigned short ushort;
 #define CONCAT11(a, b) ((ushort)(a) << 8 | (ushort)(b))
 #define CONCAT22(a, b) ((ulong)(a) << 16 | (ulong)(b))
 #define CONCAT44(a, b) ((ulonglong)(a) << 32 | (ulonglong)(b))
+
+struct vector3
+{
+	float x;
+	float y;
+	float z;
+};
+
+struct vector4
+{
+	float x;
+	float y;
+	float z;
+	float w;
+};
