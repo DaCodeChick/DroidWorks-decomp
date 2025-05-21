@@ -11,7 +11,8 @@ struct Vector3
 {
 	float x, y, z;
 
-	void GetNormalized(const Vector3 *other);
+	void Add(const Vector3 *rhs);
+	void GetNormalized(const Vector3 *rhs);
 	float Magnitude() const;
 	void Normalize();
 	void PitchYaw(Vector3 *angles) const;
