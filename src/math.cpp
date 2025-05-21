@@ -3,6 +3,20 @@
 
 #include <cmath>
 
+// Win: 0047e710
+void __cdecl Vector2::Normalize()
+{
+	float fVar1;
+
+	fVar1 = std::sqrtf(x * x + y * y);
+	if (fVar1 != 0.0)
+	{
+		x = x / fVar1;
+		y = y / fVar1;
+	}
+	return;
+}
+
 // Win: 0047e750
 void Vector3::Normalize()
 {

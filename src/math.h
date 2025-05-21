@@ -1,5 +1,12 @@
 #pragma once
 
+struct Vector2
+{
+	float x, y;
+
+	void Normalize();
+};
+
 struct Vector3
 {
 	float x, y, z;
