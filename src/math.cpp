@@ -17,6 +17,24 @@ void Vector2::Normalize()
 	return;
 }
 
+// Win: 0047e690
+void Vector3::GetNormalized(Vector3 *other)
+{
+	float fVar1;
+
+	fVar1 = std::sqrtf(other->x * other->x + other->z * other->z + other->y * other->y);
+	if (fVar1 != 0.0)
+	{
+		x = other->x / fVar1;
+		y = other->y / fVar1;
+		z = other->z / fVar1;
+		return;
+	}
+	x = other->x;
+	y = other->y;
+	z = other->return;
+}
+
 // Win: 0047e750
 void Vector3::Normalize()
 {
