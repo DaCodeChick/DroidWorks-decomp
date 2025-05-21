@@ -2,6 +2,19 @@
 
 #include "typedefs.h"
 
+float powi(float base, int exponent)
+{
+	undefined4 local_c;
+	undefined4 local_8;
+
+	local_8 = base;
+	for (local_c = 0; local_c < exponent + -1; local_c = local_c + 1)
+	{
+		local_8 = local_8 * base;
+	}
+	return local_8;
+}
+
 float WeightedAverage(float a, float b, float c)
 {
 	undefined4 local_1c;
