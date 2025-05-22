@@ -2,4 +2,5 @@
 
 #include "typedefs.h"
 
-BOOL InitializeDirectSound();
+void CleanupDirectDraw();
+void CleanupDirectSound();
