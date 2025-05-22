@@ -58,3 +58,18 @@ void CleanupDirectSound(void)
 	}
 	return;
 }
+
+// Win: 00500770
+void SetDirectSoundVolume(float value)
+{
+	LPDIRECTSOUNDBUFFER This;
+	longlong lVar2;
+
+	This = gDirectSoundBuffer;
+	if (gDirectSoundBuffer != NULL)
+	{
+		lVar2 = (longlong)((1.0f - value) * (1.0f - value) * -5000.0f);
+		This->SetVolume((LONG)lVar2);
+	}
+	return;
+}

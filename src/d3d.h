@@ -4,3 +4,4 @@
 
 void CleanupDirectDraw();
 void CleanupDirectSound();
+void SetDirectSoundVolume(float value);
