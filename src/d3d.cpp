@@ -1,5 +1,6 @@
 #include "d3d.h"
 
+#include <cmath>
 #include <ddraw.h>
 #include <dsound.h>
 
@@ -68,7 +69,7 @@ void SetDirectSoundVolume(float value)
 	This = gDirectSoundBuffer;
 	if (gDirectSoundBuffer != NULL)
 	{
-		lVar2 = (longlong)((1.0f - value) * (1.0f - value) * -5000.0f);
+		lVar2 = (longlong)std::trunc((1.0f - value) * (1.0f - value) * -5000.0f);
 		This->SetVolume((LONG)lVar2);
 	}
 	return;
