@@ -12,6 +12,7 @@ struct Vector3
 	float x, y, z;
 
 	void Add(const Vector3 *rhs);
+	void Damp(float factor, float minMagnitude, float deltaTime);
 	float Magnitude() const;
 	void Normalize();
 	void NormalizeTo(const Vector3 *rhs);

@@ -26,6 +26,70 @@ void Vector3::Add(const Vector3 *rhs)
 	return;
 }
 
+// Win: 00459970
+void Vector3::Damp(float factor, float minMagnitude, float deltaTime)
+{
+	float fVar1;
+	float fVar2;
+	float fVar3;
+	float fVar4;
+
+	if ((minMagnitude != 0.0f) && (std::sqrtf(x * x + z * z + y * y) < minMagnitude))
+	{
+		x = 0.0f;
+		y = 0.0f;
+		z = 0.0f;
+		return;
+	}
+	if (factor != 0.0f)
+	{
+		fVar1 = deltaTime * factor;
+		if (1.0f < fVar1)
+		{
+			fVar1 = 1.0f;
+		}
+		fVar1 = -fVar1;
+		fVar3 = x * fVar1 + x;
+		fVar2 = y * fVar1 + y;
+		fVar1 = z * fVar1 + z;
+		x = fVar3;
+		y = fVar2;
+		z = fVar1;
+		fVar4 = fVar3;
+		if (fVar3 < 0.0f)
+		{
+			fVar4 = -fVar3;
+		}
+		if (fVar4 <= 1e-05f)
+		{
+			fVar3 = 0.0f;
+		}
+		x = fVar3;
+		fVar3 = fVar2;
+		if (fVar2 < 0.0f)
+		{
+			fVar3 = -fVar2;
+		}
+		if (fVar3 <= 1e-05f)
+		{
+			fVar2 = 0.0f;
+		}
+		y = fVar2;
+		fVar2 = fVar1;
+		if (fVar1 < 0.0f)
+		{
+			fVar2 = -fVar1;
+		}
+		if (1e-05f < fVar2)
+		{
+			z = fVar1;
+			return;
+		}
+		z = 0.0f;
+	}
+	return;
+}
+
 // Win: 0047e650
 float Vector3::Magnitude() const
 {
