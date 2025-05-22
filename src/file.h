@@ -1,3 +1,5 @@
 #pragma once
 
-void GetFileExtension(char **path);
+int MakeDirectory(const char *path);
+int RemoveFile(const char *path);
+bool TryRemoveFile(const char *path);

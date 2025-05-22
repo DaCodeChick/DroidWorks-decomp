@@ -1,28 +1,28 @@
 #include "file.h"
+#include "typedefs.h"
 
-// Win: 00442a50
-void GetFileExtension(char **path)
+// Win: 00502410
+int MakeDirectory(const char *path)
 {
-	char cVar1;
-	char *pcVar2;
-	char *pcVar3;
-	char *pcVar4;
+	BOOL BVar1;
+	BVar1 = CreateDirectoryA(path, NULL);
+	return BVar1;
+}
 
-	pcVar2 = *path;
-	cVar1 = *pcVar2;
-	pcVar4 = pcVar2;
-	while (pcVar3 = pcVar2, cVar1 != '\0')
-	{
-		cVar1 = pcVar3[1];
-		pcVar4 = pcVar3;
-		while ((pcVar2 = pcVar4 + 1, cVar1 != '\0' && (cVar1 != '.')))
-		{
-			cVar1 = pcVar4[2];
-			pcVar4 = pcVar2;
-		}
-		cVar1 = *pcVar2;
-		pcVar4 = pcVar3;
-	}
-	*path = pcVar4;
-	return;
+// Win: 00502420
+int RemoveFile(const char *path)
+{
+	BOOL BVar1;
+
+	BVar1 = DeleteFileA(path);
+	return BVar1;
+}
+
+// Win: 004120f0
+bool TryRemoveFile(const char *path)
+{
+	BOOL BVar1;
+
+	BVar1 = RemoveFile(path);
+	return BVar1 != 0;
 }
