@@ -166,6 +166,23 @@ float Vector3::WeightedNormalize()
 	return local_c;
 }
 
+// Win: 004fd160
+int FloorLog2(int value)
+{
+	int iVar1;
+
+	iVar1 = 0;
+	if (1 < value)
+	{
+		do
+		{
+			value = value >> 1;
+			iVar1 = iVar1 + 1;
+		} while (1 < value);
+	}
+	return iVar1;
+}
+
 // Win: 00501040
 float GetAngleDelta(float base, float target)
 {
@@ -187,6 +204,41 @@ float GetAngleDelta(float base, float target)
 		fVar1 = fVar1 + 360.0f;
 	}
 	return fVar1;
+}
+
+// Win: 00501cc0
+int IsPrimeNumber(int value)
+{
+	int iVar1;
+
+	iVar1 = 2;
+	if (value + -1 < 3)
+	{
+		return 1;
+	}
+	do
+	{
+		if (value % iVar1 == 0)
+		{
+			return 0;
+		}
+		iVar1 = iVar1 + 1;
+	} while (iVar1 < value + -1);
+	return 1;
+}
+
+// Win: 00501c90
+int NextPrimeNumber(int start)
+{
+	int iVar1;
+
+	iVar1 = IsPrimeNumber(start);
+	while (iVar1 == 0)
+	{
+		start = start + 1;
+		iVar1 = IsPrimeNumber(start);
+	}
+	return start;
 }
 
 // Win: 00501000

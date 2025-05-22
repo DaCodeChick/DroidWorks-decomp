@@ -20,7 +20,10 @@ struct Vector3
 	float WeightedNormalize();
 };
 
+int FloorLog2(int value);
 float GetAngleDelta(float base, float target);
+int IsPrimeNumber(int value);
+int NextPrimeNumber(int start);
 float NormalizeAngle180(float angle);
 float NormalizeAngle360(float angle);
 float WeightedAverage(float a, float b, float c);
