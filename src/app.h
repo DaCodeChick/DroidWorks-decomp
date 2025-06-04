@@ -3,8 +3,8 @@
 #include "typedefs.h"
 
 #ifdef _WIN32
-typedef HINSTANCE AppHandle;
-typedef HWND WindowHandle;
+typedef HINSTANCE AppHandle; ///< Handle to an application.
+typedef HWND WindowHandle; ///< Handle to an application window.
 #endif
 
 /**
