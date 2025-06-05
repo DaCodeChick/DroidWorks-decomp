@@ -4,18 +4,18 @@
 #include <windows.h>
 #endif
 
-typedef unsigned char byte; ///< 8-bit unsigned integer
-typedef long long longlong; ///< 64-bit signed integer
-typedef unsigned char uchar; ///< 8-bit unsigned integer
-typedef unsigned int uint; ///< 32-bit unsigned integer
-typedef unsigned long ulong; ///< 32-bit unsigned integer
-typedef unsigned long long ulonglong; ///< 64-bit unsigned integer
-typedef unsigned char undefined; ///< 8-bit unsigned integer
-typedef unsigned char undefined1; ///< 8-bit unsigned integer
-typedef unsigned short undefined2; ///< 16-bit unsigned integer
-typedef unsigned long undefined4; ///< 32-bit unsigned integer
+typedef unsigned char byte;            ///< 8-bit unsigned integer
+typedef long long longlong;            ///< 64-bit signed integer
+typedef unsigned char uchar;           ///< 8-bit unsigned integer
+typedef unsigned int uint;             ///< 32-bit unsigned integer
+typedef unsigned long ulong;           ///< 32-bit unsigned integer
+typedef unsigned long long ulonglong;  ///< 64-bit unsigned integer
+typedef unsigned char undefined;       ///< 8-bit unsigned integer
+typedef unsigned char undefined1;      ///< 8-bit unsigned integer
+typedef unsigned short undefined2;     ///< 16-bit unsigned integer
+typedef unsigned long undefined4;      ///< 32-bit unsigned integer
 typedef unsigned long long undefined8; ///< 64-bit unsigned integer
-typedef unsigned short ushort; ///< 16-bit unsigned integer
+typedef unsigned short ushort;         ///< 16-bit unsigned integer
 
 /// @brief Carries out a 4-bit addition with carry-in.
 #define CARRY4(x, y, carry_in) ((((x) + (y) + (carry_in)) >> 4) & 1)
@@ -23,13 +23,16 @@ typedef unsigned short ushort; ///< 16-bit unsigned integer
 /// @brief Concatenates two 8-bit values into a 16-bit value.
 #define CONCAT11(a, b) ((ushort)(a) << 8 | (ushort)(b))
 
-/// @brief Concatenates the most significant byte of a 32-bit value with the least significant 3 bytes of another 32-bit value.
+/// @brief Concatenates the most significant byte of a 32-bit value with the least significant 3
+/// bytes of another 32-bit value.
 #define CONCAT13(msb1, lsb3) (((uint)(msb1) << 24) | ((uint)(lsb3) & 0xFFFFFF))
 
-/// @brief Concatenates the most significant byte of a 32-bit value with the least significant 3 bytes of another 32-bit value.
+/// @brief Concatenates the most significant byte of a 32-bit value with the least significant 3
+/// bytes of another 32-bit value.
 #define CONCAT22(a, b) ((ulong)(a) << 16 | (ulong)(b))
 
-/// @brief Concatenates the most significant byte of a 32-bit value with the least significant byte of another 32-bit value.
+/// @brief Concatenates the most significant byte of a 32-bit value with the least significant byte
+/// of another 32-bit value.
 #define CONCAT31(msb3, lsb1) (((uint)(msb3) << 8) | ((uint)(lsb1) & 0xFF))
 
 /// @brief Concatenates two 32-bit unsigned integers into a 64-bit unsigned integer.

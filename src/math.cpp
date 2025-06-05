@@ -3,6 +3,48 @@
 
 #include <cmath>
 
+// Win: 00521268
+static const uint gPrimeLUT[] = {
+    0x00000017, 0x00000035, 0x0000004F, 0x00000065, 0x00000097, 0x000000D3, 0x000000FB, 0x00000133,
+    0x00000161, 0x00000191, 0x000001C9, 0x000001F7, 0x0000022D, 0x00000259, 0x0000028D, 0x000002BD,
+    0x000002EF, 0x00000329, 0x00000355, 0x0000038B, 0x000003B9, 0x000003F1, 0x0000044F, 0x000004B1,
+    0x00000515, 0x00000581, 0x000005E7, 0x00000641, 0x000006AD, 0x00000709, 0x0000076D, 0x000007CF};
+
+// Win: 00501cc0
+static int IsPrimeNumber(int value)
+{
+	int iVar1;
+
+	iVar1 = 2;
+	if (value + -1 < 3)
+	{
+		return 1;
+	}
+	do
+	{
+		if (value % iVar1 == 0)
+		{
+			return 0;
+		}
+		iVar1 = iVar1 + 1;
+	} while (iVar1 < value + -1);
+	return 1;
+}
+
+// Win: 00501c90
+static int NextPrimeNumber(int start)
+{
+	int iVar1;
+
+	iVar1 = IsPrimeNumber(start);
+	while (iVar1 == 0)
+	{
+		start = start + 1;
+		iVar1 = IsPrimeNumber(start);
+	}
+	return start;
+}
+
 // Win: 0047e710
 void Vector2::Normalize()
 {
@@ -270,39 +312,31 @@ float GetAngleDelta(float base, float target)
 	return fVar1;
 }
 
-// Win: 00501cc0
-int IsPrimeNumber(int value)
+// Win: 00501c50
+int GetOptimalPrime(int minSize)
 {
-	int iVar1;
+	const uint *puVar1;
+	uint uVar2;
+	int iVar3;
 
-	iVar1 = 2;
-	if (value + -1 < 3)
-	{
-		return 1;
-	}
+	iVar3 = 0;
+	puVar1 = gPrimeLUT;
 	do
 	{
-		if (value % iVar1 == 0)
+		if (minSize < (int)*puVar1)
 		{
-			return 0;
+			uVar2 = gPrimeLUT[iVar3];
+			break;
 		}
-		iVar1 = iVar1 + 1;
-	} while (iVar1 < value + -1);
-	return 1;
-}
-
-// Win: 00501c90
-int NextPrimeNumber(int start)
-{
-	int iVar1;
-
-	iVar1 = IsPrimeNumber(start);
-	while (iVar1 == 0)
+		puVar1 = puVar1 + 1;
+		iVar3 = iVar3 + 1;
+		uVar2 = minSize;
+	} while ((ulonglong)puVar1 < 100.0f);
+	if (1999 < minSize)
 	{
-		start = start + 1;
-		iVar1 = IsPrimeNumber(start);
+		uVar2 = NextPrimeNumber(minSize);
 	}
-	return start;
+	return uVar2;
 }
 
 // Win: 00501000
