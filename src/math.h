@@ -73,6 +73,15 @@ struct Vector3
 	float WeightedNormalize();
 };
 
+/// @brief A 4D vector
+struct Vector4
+{
+	float x; ///< The x-coordinate of the vector
+	float y; ///< The y-coordinate of the vector
+	float z; ///< The z-coordinate of the vector
+	float w; ///< The w-coordinate of the vector
+};
+
 /**
  * @brief Calculates the floor of the base 2 logarithm of a value.
  *
